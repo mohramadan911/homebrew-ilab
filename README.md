@@ -2,7 +2,7 @@
 Formula to install instructlab (ilab cli) on MacOs
 
 
-## installation
+## Installation
 ```sh
 brew tap instructlab/ilab https://github.com/mohramadan911/homebrew-ilab
 ```
