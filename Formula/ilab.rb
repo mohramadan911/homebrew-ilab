@@ -9,8 +9,26 @@ class Ilab < Formula
   depends_on "python@3.11"
 
   def install
-    ohai "Installing InstructLab CLI..."
-    virtualenv_install_with_resources
+    # Inform the user about the installation process
+    ohai "Starting installation of InstructLab CLI..."
+    ohai "Step 1/3: Creating virtual environment"
+
+    # Set the installation directory
+    install_dir = "#{prefix}/instructlab"
+
+    # Create a virtual environment
+    system "python3", "-m", "venv", "--upgrade-deps", "#{install_dir}/venv"
+
+    ohai "Step 2/3: Installing InstructLab dependencies"
+
+    # Install InstructLab within the virtual environment
+    system "#{install_dir}/venv/bin/pip", "install", "instructlab"
+
+    ohai "Step 3/3: Linking the binary"
+
+    # Link the binary
+    bin.install "#{install_dir}/venv/bin/ilab"
+
     ohai "Installation complete. You can now use 'ilab'."
   end
 
